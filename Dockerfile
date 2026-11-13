@@ -2,7 +2,11 @@
 FROM node:20-bookworm-slim
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends git openssh-client \
+    && apt-get install -y --no-install-recommends \
+       git \
+       openssh-client \
+       ca-certificates \
+    && update-ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 RUN git config --global --add url."https://github.com/".insteadOf "ssh://git@github.com/" \
